@@ -3,7 +3,7 @@ Since it was a headache to implement leaflet-velocity with Ionic 3, I decided to
 * You need leaflet (v1.0.3 or v0.7.7).
 * jQuery script tag inside `index.html`.
 * And this :
-```
+```typescript
 import 'leaflet';
 import 'leaflet-velocity';
 
@@ -17,7 +17,7 @@ declare var L: any;//Declare leaflet lib and plugin
  * Run `ionic serve` in a terminal from the project root.
 
  ## How to use it
- ```
+ ```typescript
  //Read JSON DATA and use it for velocity layer
  this.http.get('assets/wind-gbr.json').map(res => res.json()).subscribe(data => {
    var vLayer = L.velocityLayer({

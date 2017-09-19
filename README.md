@@ -11,7 +11,7 @@ declare var L: any;//Declare leaflet lib and plugin
 ```
 
  ## Get it running
- * Clone this repository: `https://github.com/0nza1101/leaflet-velocity-ionic.git`.
+ * Clone this repository: `https://github.com/0nza1101/ionic3-leaflet-velocity.git`.
  * Run `npm install` from the project root.
  * If you do not install the ionic CLI (`npm install cordova ionic -g`)
  * Run `ionic serve` in a terminal from the project root.

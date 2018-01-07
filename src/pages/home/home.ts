@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import 'leaflet';
-import 'leaflet-velocity';
+import 'leaflet-velocity-ts';
 
 declare var L: any;//Declare leaflet lib and plugin
 
@@ -15,8 +15,6 @@ declare var L: any;//Declare leaflet lib and plugin
 export class HomePage {
   map: any;
   center: any;
-
-
 
   constructor(public navCtrl: NavController, public http: Http) {
 
@@ -41,25 +39,27 @@ export class HomePage {
 
     //Add tile layer
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-          attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, ' +
-          'AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-      }).addTo(this.map);
+    }).addTo(this.map);
 
     this.map.setView([-22, 150], 4);
 
     //Read JSON DATA and use it for velocity layer
     this.http.get('assets/wind-gbr.json').map(res => res.json()).subscribe(data => {
-      var vLayer = L.velocityLayer({
+      let velocity = L.velocityLayer({
         displayValues: true,
-    		displayOptions: {
-    			velocityType: 'GBR Wind',
-    			displayPosition: 'bottomleft',
-    			displayEmptyString: 'No wind data'
-    		},
-    		data: data,
-    		maxVelocity: 10
+        displayOptions: {
+          velocityType: 'GBR Wind',
+          position: 'bottomleft',
+          emptyString: 'No velocity data',
+          angleConvention: 'bearingCW',
+          displayPosition: 'bottomleft',
+          displayEmptyString: 'No velocity data',
+          speedUnit: 'm/s'
+        },
+        data: data,
+        maxVelocity: 10,
       });
-      this.map.addLayer(vLayer, 'Wind - Great Barrier Reef');
+      velocity.addTo(this.map);
     });
   }
 

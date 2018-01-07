@@ -1,5 +1,5 @@
 {
-  "name": "leaflet-test",
+  "name": "ionic3-leaflet-velocity",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -24,12 +24,11 @@
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
     "@ionic/storage": "2.0.1",
-    "@types/leaflet.markercluster": "^1.0.1",
+    "ajv": "^5.5.2",
     "ionic-angular": "3.6.1",
     "ionicons": "3.0.0",
-    "jquery": "^3.2.1",
     "leaflet": "1.0.3",
-    "leaflet-velocity": "^1.2.3",
+    "leaflet-velocity-ts": "^1.0.5",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.12"

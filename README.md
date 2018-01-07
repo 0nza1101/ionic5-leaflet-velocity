@@ -1,11 +1,11 @@
 This is a sample application using Ionic 3 and Leaflet with leaflet-velocity.
-Since it was a headache to implement leaflet-velocity with Ionic 3, I decided to share it.
-* You need leaflet (v1.0.3 or v0.7.7).
-* jQuery script tag inside `index.html`.
-* And this :
+Since it was a headache to implement leaflet-velocity with Ionic 3, I decided to make a new version of this plugin.
+This npm package [leaflet-velocity-ts](https://www.npmjs.com/package/leaflet-velocity-ts) is based on a typescript fork of leaflet-velocity made by [Cyrille Meichel](https://github.com/landru29/leaflet-velocity-ts) adding to it wind speed values on the map when the mouse is over a region and some other little fix.
+`npm i leaflet-velocity-ts --save`
+
 ```typescript
 import 'leaflet';
-import 'leaflet-velocity';
+import 'leaflet-velocity-ts';
 
 declare var L: any;//Declare leaflet lib and plugin
 ```
@@ -20,16 +20,20 @@ declare var L: any;//Declare leaflet lib and plugin
  ```typescript
  //Read JSON DATA and use it for velocity layer
  this.http.get('assets/wind-gbr.json').map(res => res.json()).subscribe(data => {
-   var vLayer = L.velocityLayer({
-    displayValues: true,
-    displayOptions: {
-      velocityType: 'GBR Wind',
-      displayPosition: 'bottomleft',
-      displayEmptyString: 'No wind data'
-    },
-    data: data,
-    maxVelocity: 10
+   let velocity = L.velocityLayer({
+     displayValues: true,
+     displayOptions: {
+       velocityType: 'GBR Wind',
+       position: 'bottomleft',//REQUIRED !
+       emptyString: 'No velocity data', //REQUIRED !
+       angleConvention: 'bearingCW',
+       displayPosition: 'bottomleft',
+       displayEmptyString: 'No velocity data',
+       speedUnit: 'm/s'
+     },
+     data: data,
+     maxVelocity: 10,
    });
-   this.map.addLayer(vLayer, 'Wind - Great Barrier Reef');
+   velocity.addTo(this.map);
  });
 ```

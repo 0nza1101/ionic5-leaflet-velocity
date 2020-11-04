@@ -1,0 +1,7 @@
+{
+  "name": "ionic5-leaflet-velocity",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
